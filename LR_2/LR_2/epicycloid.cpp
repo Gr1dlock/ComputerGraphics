@@ -22,6 +22,12 @@ void Epicycloid::transfer(double dx, double dy)
         p.setY(static_cast<int>(p.y() + dy));
     }
     setBoarders();
+    prev_rec = cur_rec;
+    for(QPoint& p: cur_rec)
+    {
+        p.setX(static_cast<int>(p.x() + dx));
+        p.setY(static_cast<int>(p.y() + dy));
+    }
 }
 
 void Epicycloid::scale(double xm, double ym, double kx, double ky)
@@ -32,14 +38,30 @@ void Epicycloid::scale(double xm, double ym, double kx, double ky)
         p.setX(static_cast<int>(p.x() * kx + (1 - kx) * xm));
         p.setY(static_cast<int>(p.y() * ky + (1 - ky) * ym));
     }
+    prev_rec = cur_rec;
+    for(QPoint& p: cur_rec)
+    {
+        p.setX(static_cast<int>(p.x() * kx + (1 - kx) * xm));
+        p.setY(static_cast<int>(p.y() * ky + (1 - ky) * ym));
+    }
     setBoarders();
 }
 
 void Epicycloid::turn(double xc, double yc, double angle)
 {
     prev = cur;
+    prev_rec = cur_rec;
     int tmp_x, tmp_y;
     for(QPoint& p: cur)
+    {
+        tmp_x = p.x();
+        tmp_y = p.y();
+        p.setX(static_cast<int>(xc + (tmp_x - xc) * cos(angle * M_PI / 180) +
+                                (tmp_y - yc) * sin(angle * M_PI / 180)));
+        p.setY(static_cast<int>(yc - (tmp_x - xc) * sin(angle * M_PI / 180) +
+                                (tmp_y - yc) * cos(angle * M_PI / 180)));
+    }
+    for(QPoint& p: cur_rec)
     {
         tmp_x = p.x();
         tmp_y = p.y();
@@ -56,8 +78,10 @@ void Epicycloid::stepback()
     if (!prev.empty())
     {
         cur = prev;
+        cur_rec = prev_rec;
         setBoarders();
         prev.clear();
+        prev_rec.clear();
     }
 }
 
@@ -74,12 +98,18 @@ void Epicycloid::countPoints()
         cur << QPoint(x, y);
         angle += 0.01;
     }
+    cur_rec << QPoint(static_cast<int>(270 - (b_ + a_) * 2.5), static_cast<int>(270 - (b_ + a_) * 1.5));
+    cur_rec << QPoint(static_cast<int>(270 - (b_ + a_) * 2.5), static_cast<int>(270 + (b_ + a_) * 1.5));
+    cur_rec << QPoint(static_cast<int>(270 + (b_ + a_) * 2.5), static_cast<int>(270 + (b_ + a_) * 1.5));
+    cur_rec << QPoint(static_cast<int>(270 + (b_ + a_) * 2.5), static_cast<int>(270 - (b_ + a_) * 1.5));
     setBoarders();
 }
 
 void Epicycloid::drawEpicycloid()
 {
     prev = cur;
+    prev_rec = cur_rec;
+    cur_rec.clear();
     cur.clear();
     countPoints();
 }
@@ -93,22 +123,9 @@ void Epicycloid::setParam(double a, double b)
 
 void Epicycloid::setBoarders()
 {
-    int max_x, max_y, min_x, min_y;
-    max_x = min_x = cur[0].x();
-    max_y = min_y = cur[0].y();
-    foreach(QPoint p, cur)
-    {
-        if (p.x() > max_x)
-            max_x = p.x();
-        else if (p.x() < min_x)
-            min_x = p.x();
-        else if (p.y() > max_y)
-            max_y = p.y();
-        else if (p.y() < min_y)
-            min_y = p.y();
-    }
-    leftboarder = QPoint(min_x - 30, min_y - 30);
-    rightboarder = QPoint(max_x + 30, max_y + 30);
+    leftboarder = cur_rec[0];
+    rightboarder = cur_rec[2];
+
 }
 
 QRectF Epicycloid::boundingRect() const
@@ -121,6 +138,9 @@ void Epicycloid::paint(QPainter *painter,
                        QWidget *widget)
 {
     QPolygon polygon(cur);
+    QPolygon rec(cur_rec);
+    painter->setBrush(QBrush(Qt::black, Qt::BDiagPattern));
+    painter->drawPolygon(rec);
     painter->setBrush(Qt::white);
     painter->drawPolygon(polygon);
     Q_UNUSED(option);

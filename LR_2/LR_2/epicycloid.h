@@ -30,7 +30,8 @@ private:
     QVector<QPoint> cur;
     QVector<QPoint> prev;
     void setBoarders();
-
+    QVector<QPoint> cur_rec;
+    QVector<QPoint> prev_rec;
 };
 
 #endif // EPICYCLOID_H

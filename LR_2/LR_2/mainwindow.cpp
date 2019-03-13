@@ -7,9 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
-    epicycloid = new Epicycloid(30, 90);
+    epicycloid = new Epicycloid(8, 24);
     ui->graphicsView->setScene(scene);
-    scene->setBackgroundBrush(QBrush(Qt::black, Qt::BDiagPattern));
     scene->addItem(epicycloid);
     QRegExp check("[-+]?(\\d+(\\.\\d*)?|\\.\\d+)$");
     QRegExpValidator *valid = new QRegExpValidator(check, this);

@@ -839,9 +839,9 @@ public:
         label_16->setText(QApplication::translate("MainWindow", "y = (a+b)\302\267sint - a\302\267sin((a+b)t / a)", nullptr));
         label_18->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">, \320\263\320\264\320\265 b/a - </span><span style=\" font-size:12pt; text-decoration: underline;\">\321\206\320\265\320\273\320\276\320\265</span></p></body></html>", nullptr));
         label_13->setText(QApplication::translate("MainWindow", "a=", nullptr));
-        lineEdit_10->setPlaceholderText(QApplication::translate("MainWindow", "30", nullptr));
+        lineEdit_10->setPlaceholderText(QApplication::translate("MainWindow", "8", nullptr));
         label_14->setText(QApplication::translate("MainWindow", "b=", nullptr));
-        lineEdit_11->setPlaceholderText(QApplication::translate("MainWindow", "90", nullptr));
+        lineEdit_11->setPlaceholderText(QApplication::translate("MainWindow", "24", nullptr));
         pushButton_4->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\264\320\260\321\202\321\214", nullptr));
         Transfer->setTitle(QApplication::translate("MainWindow", "\320\237\320\265\321\200\320\265\320\275\320\276\321\201", nullptr));
         label->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt;\">\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \320\277\320\265\321\200\320\265\320\275\320\276\321\201\320\260</span></p></body></html>", nullptr));

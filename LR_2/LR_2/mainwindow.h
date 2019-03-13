@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QtCore>
 #include <QtGui>
-#include <QDebug>
 #include "epicycloid.h"
 
 namespace Ui {
