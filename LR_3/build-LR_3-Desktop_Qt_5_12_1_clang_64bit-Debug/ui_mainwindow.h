@@ -23,6 +23,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -33,8 +34,14 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QGraphicsView *graphicsView;
+    QGroupBox *clearBox;
+    QHBoxLayout *horizontalLayout_13;
+    QSpacerItem *horizontalSpacer_18;
+    QPushButton *clearButton;
+    QSpacerItem *horizontalSpacer_19;
     QSplitter *splitter;
-    QGroupBox *buildBox;
+    QTabWidget *tabWidget;
+    QWidget *buildTab;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
@@ -64,6 +71,34 @@ public:
     QSpacerItem *horizontalSpacer_9;
     QPushButton *buildButton;
     QSpacerItem *horizontalSpacer_10;
+    QWidget *visualCharacteristicsTab;
+    QVBoxLayout *verticalLayout_6;
+    QHBoxLayout *horizontalLayout_14;
+    QSpacerItem *horizontalSpacer_20;
+    QLabel *label_7;
+    QSpacerItem *horizontalSpacer_21;
+    QHBoxLayout *horizontalLayout_15;
+    QLabel *label_8;
+    QLineEdit *lineEdit_Xc;
+    QSpacerItem *horizontalSpacer_22;
+    QHBoxLayout *horizontalLayout_16;
+    QLabel *label_9;
+    QLineEdit *lineEdit_Yc;
+    QSpacerItem *horizontalSpacer_23;
+    QHBoxLayout *horizontalLayout_17;
+    QSpacerItem *horizontalSpacer_24;
+    QHBoxLayout *horizontalLayout_18;
+    QLabel *label_11;
+    QLineEdit *lineEdit_Length;
+    QSpacerItem *horizontalSpacer_26;
+    QHBoxLayout *horizontalLayout_19;
+    QLabel *label_12;
+    QLineEdit *lineEdit_Angle;
+    QSpacerItem *horizontalSpacer_27;
+    QHBoxLayout *horizontalLayout_20;
+    QSpacerItem *horizontalSpacer_28;
+    QPushButton *buildVisualButton;
+    QSpacerItem *horizontalSpacer_29;
     QGroupBox *algorithmBox;
     QHBoxLayout *horizontalLayout_12;
     QSpacerItem *horizontalSpacer_17;
@@ -93,15 +128,10 @@ public:
     QGroupBox *compareBox;
     QHBoxLayout *horizontalLayout_11;
     QSpacerItem *horizontalSpacer_11;
-    QPushButton *visualButton;
+    QPushButton *stepButton;
     QSpacerItem *horizontalSpacer_14;
     QPushButton *timeButton;
     QSpacerItem *horizontalSpacer_15;
-    QGroupBox *clearBox;
-    QHBoxLayout *horizontalLayout_13;
-    QSpacerItem *horizontalSpacer_18;
-    QPushButton *clearButton;
-    QSpacerItem *horizontalSpacer_19;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -184,17 +214,41 @@ public:
         graphicsView->setPalette(palette);
         graphicsView->setInteractive(false);
         graphicsView->setOptimizationFlags(QGraphicsView::DontAdjustForAntialiasing);
+        clearBox = new QGroupBox(centralWidget);
+        clearBox->setObjectName(QString::fromUtf8("clearBox"));
+        clearBox->setGeometry(QRect(20, 550, 540, 67));
+        clearBox->setFlat(true);
+        horizontalLayout_13 = new QHBoxLayout(clearBox);
+        horizontalLayout_13->setSpacing(6);
+        horizontalLayout_13->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
+        horizontalSpacer_18 = new QSpacerItem(200, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_18);
+
+        clearButton = new QPushButton(clearBox);
+        clearButton->setObjectName(QString::fromUtf8("clearButton"));
+
+        horizontalLayout_13->addWidget(clearButton);
+
+        horizontalSpacer_19 = new QSpacerItem(200, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_19);
+
         splitter = new QSplitter(centralWidget);
         splitter->setObjectName(QString::fromUtf8("splitter"));
-        splitter->setGeometry(QRect(580, 10, 400, 580));
+        splitter->setGeometry(QRect(580, 20, 400, 570));
         splitter->setOrientation(Qt::Vertical);
-        buildBox = new QGroupBox(splitter);
-        buildBox->setObjectName(QString::fromUtf8("buildBox"));
-        QFont font;
-        font.setPointSize(18);
-        buildBox->setFont(font);
-        buildBox->setAlignment(Qt::AlignCenter);
-        verticalLayout = new QVBoxLayout(buildBox);
+        tabWidget = new QTabWidget(splitter);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setTabShape(QTabWidget::Rounded);
+        tabWidget->setElideMode(Qt::ElideMiddle);
+        tabWidget->setTabsClosable(false);
+        tabWidget->setMovable(false);
+        tabWidget->setTabBarAutoHide(false);
+        buildTab = new QWidget();
+        buildTab->setObjectName(QString::fromUtf8("buildTab"));
+        verticalLayout = new QVBoxLayout(buildTab);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -205,7 +259,7 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
-        label = new QLabel(buildBox);
+        label = new QLabel(buildTab);
         label->setObjectName(QString::fromUtf8("label"));
 
         horizontalLayout_3->addWidget(label);
@@ -217,16 +271,16 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_3 = new QLabel(buildBox);
+        label_3 = new QLabel(buildTab);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         horizontalLayout_2->addWidget(label_3);
 
-        lineEdit_Xn = new QLineEdit(buildBox);
+        lineEdit_Xn = new QLineEdit(buildTab);
         lineEdit_Xn->setObjectName(QString::fromUtf8("lineEdit_Xn"));
-        QFont font1;
-        font1.setPointSize(14);
-        lineEdit_Xn->setFont(font1);
+        QFont font;
+        font.setPointSize(14);
+        lineEdit_Xn->setFont(font);
 
         horizontalLayout_2->addWidget(lineEdit_Xn);
 
@@ -240,21 +294,21 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label_5 = new QLabel(buildBox);
+        label_5 = new QLabel(buildTab);
         label_5->setObjectName(QString::fromUtf8("label_5"));
 
         horizontalLayout->addWidget(label_5);
 
-        lineEdit_Yn = new QLineEdit(buildBox);
+        lineEdit_Yn = new QLineEdit(buildTab);
         lineEdit_Yn->setObjectName(QString::fromUtf8("lineEdit_Yn"));
-        lineEdit_Yn->setFont(font1);
+        lineEdit_Yn->setFont(font);
 
         horizontalLayout->addWidget(lineEdit_Yn);
 
 
         horizontalLayout_3->addLayout(horizontalLayout);
 
-        horizontalSpacer_2 = new QSpacerItem(50, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
@@ -268,7 +322,7 @@ public:
 
         horizontalLayout_6->addItem(horizontalSpacer_5);
 
-        label_2 = new QLabel(buildBox);
+        label_2 = new QLabel(buildTab);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout_6->addWidget(label_2);
@@ -280,14 +334,14 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        label_4 = new QLabel(buildBox);
+        label_4 = new QLabel(buildTab);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
         horizontalLayout_5->addWidget(label_4);
 
-        lineEdit_Xk = new QLineEdit(buildBox);
+        lineEdit_Xk = new QLineEdit(buildTab);
         lineEdit_Xk->setObjectName(QString::fromUtf8("lineEdit_Xk"));
-        lineEdit_Xk->setFont(font1);
+        lineEdit_Xk->setFont(font);
 
         horizontalLayout_5->addWidget(lineEdit_Xk);
 
@@ -301,21 +355,21 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        label_6 = new QLabel(buildBox);
+        label_6 = new QLabel(buildTab);
         label_6->setObjectName(QString::fromUtf8("label_6"));
 
         horizontalLayout_4->addWidget(label_6);
 
-        lineEdit_Yk = new QLineEdit(buildBox);
+        lineEdit_Yk = new QLineEdit(buildTab);
         lineEdit_Yk->setObjectName(QString::fromUtf8("lineEdit_Yk"));
-        lineEdit_Yk->setFont(font1);
+        lineEdit_Yk->setFont(font);
 
         horizontalLayout_4->addWidget(lineEdit_Yk);
 
 
         horizontalLayout_6->addLayout(horizontalLayout_4);
 
-        horizontalSpacer_8 = new QSpacerItem(50, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_8);
 
@@ -329,7 +383,7 @@ public:
 
         horizontalLayout_7->addItem(horizontalSpacer_9);
 
-        buildButton = new QPushButton(buildBox);
+        buildButton = new QPushButton(buildTab);
         buildButton->setObjectName(QString::fromUtf8("buildButton"));
 
         horizontalLayout_7->addWidget(buildButton);
@@ -341,10 +395,183 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_7);
 
-        splitter->addWidget(buildBox);
+        tabWidget->addTab(buildTab, QString());
+        visualCharacteristicsTab = new QWidget();
+        visualCharacteristicsTab->setObjectName(QString::fromUtf8("visualCharacteristicsTab"));
+        verticalLayout_6 = new QVBoxLayout(visualCharacteristicsTab);
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setSpacing(6);
+        horizontalLayout_14->setObjectName(QString::fromUtf8("horizontalLayout_14"));
+        horizontalSpacer_20 = new QSpacerItem(4, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_14->addItem(horizontalSpacer_20);
+
+        label_7 = new QLabel(visualCharacteristicsTab);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_7->sizePolicy().hasHeightForWidth());
+        label_7->setSizePolicy(sizePolicy);
+
+        horizontalLayout_14->addWidget(label_7);
+
+        horizontalSpacer_21 = new QSpacerItem(6, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_14->addItem(horizontalSpacer_21);
+
+        horizontalLayout_15 = new QHBoxLayout();
+        horizontalLayout_15->setSpacing(6);
+        horizontalLayout_15->setObjectName(QString::fromUtf8("horizontalLayout_15"));
+        label_8 = new QLabel(visualCharacteristicsTab);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        sizePolicy.setHeightForWidth(label_8->sizePolicy().hasHeightForWidth());
+        label_8->setSizePolicy(sizePolicy);
+        label_8->setMaximumSize(QSize(18, 16777215));
+
+        horizontalLayout_15->addWidget(label_8);
+
+        lineEdit_Xc = new QLineEdit(visualCharacteristicsTab);
+        lineEdit_Xc->setObjectName(QString::fromUtf8("lineEdit_Xc"));
+        lineEdit_Xc->setMinimumSize(QSize(55, 0));
+        lineEdit_Xc->setMaximumSize(QSize(55, 16777215));
+        lineEdit_Xc->setFont(font);
+
+        horizontalLayout_15->addWidget(lineEdit_Xc);
+
+
+        horizontalLayout_14->addLayout(horizontalLayout_15);
+
+        horizontalSpacer_22 = new QSpacerItem(38, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_14->addItem(horizontalSpacer_22);
+
+        horizontalLayout_16 = new QHBoxLayout();
+        horizontalLayout_16->setSpacing(6);
+        horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
+        label_9 = new QLabel(visualCharacteristicsTab);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        sizePolicy.setHeightForWidth(label_9->sizePolicy().hasHeightForWidth());
+        label_9->setSizePolicy(sizePolicy);
+
+        horizontalLayout_16->addWidget(label_9);
+
+        lineEdit_Yc = new QLineEdit(visualCharacteristicsTab);
+        lineEdit_Yc->setObjectName(QString::fromUtf8("lineEdit_Yc"));
+        lineEdit_Yc->setMinimumSize(QSize(62, 0));
+        lineEdit_Yc->setMaximumSize(QSize(62, 16777215));
+        lineEdit_Yc->setFont(font);
+
+        horizontalLayout_16->addWidget(lineEdit_Yc);
+
+
+        horizontalLayout_14->addLayout(horizontalLayout_16);
+
+        horizontalSpacer_23 = new QSpacerItem(4, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_14->addItem(horizontalSpacer_23);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_14);
+
+        horizontalLayout_17 = new QHBoxLayout();
+        horizontalLayout_17->setSpacing(6);
+        horizontalLayout_17->setObjectName(QString::fromUtf8("horizontalLayout_17"));
+        horizontalSpacer_24 = new QSpacerItem(56, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_17->addItem(horizontalSpacer_24);
+
+        horizontalLayout_18 = new QHBoxLayout();
+        horizontalLayout_18->setSpacing(6);
+        horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
+        horizontalLayout_18->setSizeConstraint(QLayout::SetDefaultConstraint);
+        label_11 = new QLabel(visualCharacteristicsTab);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+        sizePolicy.setHeightForWidth(label_11->sizePolicy().hasHeightForWidth());
+        label_11->setSizePolicy(sizePolicy);
+
+        horizontalLayout_18->addWidget(label_11);
+
+        lineEdit_Length = new QLineEdit(visualCharacteristicsTab);
+        lineEdit_Length->setObjectName(QString::fromUtf8("lineEdit_Length"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(lineEdit_Length->sizePolicy().hasHeightForWidth());
+        lineEdit_Length->setSizePolicy(sizePolicy1);
+        lineEdit_Length->setMinimumSize(QSize(55, 10));
+        lineEdit_Length->setMaximumSize(QSize(55, 16777215));
+        lineEdit_Length->setFont(font);
+
+        horizontalLayout_18->addWidget(lineEdit_Length);
+
+
+        horizontalLayout_17->addLayout(horizontalLayout_18);
+
+        horizontalSpacer_26 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_17->addItem(horizontalSpacer_26);
+
+        horizontalLayout_19 = new QHBoxLayout();
+        horizontalLayout_19->setSpacing(6);
+        horizontalLayout_19->setObjectName(QString::fromUtf8("horizontalLayout_19"));
+        horizontalLayout_19->setSizeConstraint(QLayout::SetNoConstraint);
+        label_12 = new QLabel(visualCharacteristicsTab);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+        sizePolicy.setHeightForWidth(label_12->sizePolicy().hasHeightForWidth());
+        label_12->setSizePolicy(sizePolicy);
+
+        horizontalLayout_19->addWidget(label_12);
+
+        lineEdit_Angle = new QLineEdit(visualCharacteristicsTab);
+        lineEdit_Angle->setObjectName(QString::fromUtf8("lineEdit_Angle"));
+        sizePolicy1.setHeightForWidth(lineEdit_Angle->sizePolicy().hasHeightForWidth());
+        lineEdit_Angle->setSizePolicy(sizePolicy1);
+        lineEdit_Angle->setMinimumSize(QSize(62, 0));
+        lineEdit_Angle->setMaximumSize(QSize(62, 16777215));
+        lineEdit_Angle->setFont(font);
+
+        horizontalLayout_19->addWidget(lineEdit_Angle);
+
+
+        horizontalLayout_17->addLayout(horizontalLayout_19);
+
+        horizontalSpacer_27 = new QSpacerItem(4, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_17->addItem(horizontalSpacer_27);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_17);
+
+        horizontalLayout_20 = new QHBoxLayout();
+        horizontalLayout_20->setSpacing(6);
+        horizontalLayout_20->setObjectName(QString::fromUtf8("horizontalLayout_20"));
+        horizontalSpacer_28 = new QSpacerItem(120, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_20->addItem(horizontalSpacer_28);
+
+        buildVisualButton = new QPushButton(visualCharacteristicsTab);
+        buildVisualButton->setObjectName(QString::fromUtf8("buildVisualButton"));
+
+        horizontalLayout_20->addWidget(buildVisualButton);
+
+        horizontalSpacer_29 = new QSpacerItem(120, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_20->addItem(horizontalSpacer_29);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_20);
+
+        tabWidget->addTab(visualCharacteristicsTab, QString());
+        splitter->addWidget(tabWidget);
         algorithmBox = new QGroupBox(splitter);
         algorithmBox->setObjectName(QString::fromUtf8("algorithmBox"));
-        algorithmBox->setFont(font);
+        QFont font1;
+        font1.setPointSize(18);
+        algorithmBox->setFont(font1);
         algorithmBox->setAlignment(Qt::AlignCenter);
         horizontalLayout_12 = new QHBoxLayout(algorithmBox);
         horizontalLayout_12->setSpacing(6);
@@ -396,7 +623,7 @@ public:
         splitter->addWidget(algorithmBox);
         colorBox = new QGroupBox(splitter);
         colorBox->setObjectName(QString::fromUtf8("colorBox"));
-        colorBox->setFont(font);
+        colorBox->setFont(font1);
         colorBox->setAlignment(Qt::AlignCenter);
         horizontalLayout_10 = new QHBoxLayout(colorBox);
         horizontalLayout_10->setSpacing(6);
@@ -542,7 +769,7 @@ public:
         splitter->addWidget(colorBox);
         compareBox = new QGroupBox(splitter);
         compareBox->setObjectName(QString::fromUtf8("compareBox"));
-        compareBox->setFont(font);
+        compareBox->setFont(font1);
         compareBox->setAlignment(Qt::AlignCenter);
         horizontalLayout_11 = new QHBoxLayout(compareBox);
         horizontalLayout_11->setSpacing(6);
@@ -552,10 +779,15 @@ public:
 
         horizontalLayout_11->addItem(horizontalSpacer_11);
 
-        visualButton = new QPushButton(compareBox);
-        visualButton->setObjectName(QString::fromUtf8("visualButton"));
+        stepButton = new QPushButton(compareBox);
+        stepButton->setObjectName(QString::fromUtf8("stepButton"));
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(stepButton->sizePolicy().hasHeightForWidth());
+        stepButton->setSizePolicy(sizePolicy2);
 
-        horizontalLayout_11->addWidget(visualButton);
+        horizontalLayout_11->addWidget(stepButton);
 
         horizontalSpacer_14 = new QSpacerItem(43, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -571,27 +803,6 @@ public:
         horizontalLayout_11->addItem(horizontalSpacer_15);
 
         splitter->addWidget(compareBox);
-        clearBox = new QGroupBox(centralWidget);
-        clearBox->setObjectName(QString::fromUtf8("clearBox"));
-        clearBox->setGeometry(QRect(20, 550, 540, 67));
-        clearBox->setFlat(true);
-        horizontalLayout_13 = new QHBoxLayout(clearBox);
-        horizontalLayout_13->setSpacing(6);
-        horizontalLayout_13->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
-        horizontalSpacer_18 = new QSpacerItem(200, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_13->addItem(horizontalSpacer_18);
-
-        clearButton = new QPushButton(clearBox);
-        clearButton->setObjectName(QString::fromUtf8("clearButton"));
-
-        horizontalLayout_13->addWidget(clearButton);
-
-        horizontalSpacer_19 = new QSpacerItem(200, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_13->addItem(horizontalSpacer_19);
-
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
@@ -599,13 +810,17 @@ public:
 
         retranslateUi(MainWindow);
 
+        tabWidget->setCurrentIndex(1);
+
+
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\233\320\260\320\261\320\276\321\200\320\260\321\202\320\276\321\200\320\275\320\260\321\217 \321\200\320\260\320\261\320\276\321\202\320\260 3", nullptr));
-        buildBox->setTitle(QApplication::translate("MainWindow", "\320\237\320\276\321\201\321\202\321\200\320\276\320\265\320\275\320\270\320\265 \320\276\321\202\321\200\320\265\320\267\320\272\320\260", nullptr));
+        clearBox->setTitle(QString());
+        clearButton->setText(QApplication::translate("MainWindow", "\320\236\321\207\320\270\321\201\321\202\320\270\321\202\321\214", nullptr));
         label->setText(QApplication::translate("MainWindow", "\320\235\320\260\321\207\320\260\320\273\320\276 \320\276\321\202\321\200\320\265\320\267\320\272\320\260:", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "Xn:", nullptr));
         label_5->setText(QApplication::translate("MainWindow", "Yn:", nullptr));
@@ -613,6 +828,16 @@ public:
         label_4->setText(QApplication::translate("MainWindow", "Xk:", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "Yk:", nullptr));
         buildButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\201\321\202\321\200\320\276\320\270\321\202\321\214", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(buildTab), QApplication::translate("MainWindow", "\320\237\320\276\321\201\321\202\321\200\320\276\320\265\320\275\320\270\320\265 \320\276\321\202\321\200\320\265\320\267\320\272\320\276\320\262", nullptr));
+        label_7->setText(QApplication::translate("MainWindow", "\320\246\320\265\320\275\321\202\321\200 \320\277\320\276\321\201\321\202\321\200\320\276\320\265\320\275\320\270\321\217:", nullptr));
+        label_8->setText(QApplication::translate("MainWindow", "Xc:", nullptr));
+        label_9->setText(QApplication::translate("MainWindow", "Yc:", nullptr));
+        label_11->setText(QApplication::translate("MainWindow", "\320\224\320\273\320\270\320\275\320\260 \320\276\321\202\321\200\320\265\320\267\320\272\320\276\320\262:", nullptr));
+        label_12->setText(QApplication::translate("MainWindow", "\320\243\320\263\320\276\320\273 \316\224\316\270:", nullptr));
+        lineEdit_Angle->setInputMask(QString());
+        lineEdit_Angle->setPlaceholderText(QApplication::translate("MainWindow", "\320\263\321\200\320\260\320\264\321\203\321\201\321\213", nullptr));
+        buildVisualButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\201\321\202\321\200\320\276\320\270\321\202\321\214", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(visualCharacteristicsTab), QApplication::translate("MainWindow", "\320\222\320\270\320\267\321\203\320\260\320\273\321\214\320\275\321\213\320\265 \321\205\320\260\321\200\320\260\320\272\321\202\320\265\321\200\320\270\321\201\321\202\320\270\320\272\320\270", nullptr));
         algorithmBox->setTitle(QApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274", nullptr));
         radioButton->setText(QApplication::translate("MainWindow", "\320\246\320\224\320\220", nullptr));
         radioButton_2->setText(QApplication::translate("MainWindow", "\320\221\321\200\320\265\320\267\320\265\320\275\321\205\320\265\320\274\320\260 \321\201 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\321\202\320\265\320\273\321\214\320\275\321\213\320\274\320\270 \321\207\320\270\321\201\320\273\320\260\320\274\320\270", nullptr));
@@ -624,12 +849,9 @@ public:
         radioButton_7->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\264\320\260\320\275\320\275\321\213\320\271 \321\206\320\262\320\265\321\202", nullptr));
         chooseButton->setText(QApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\321\202\321\214", nullptr));
         compareBox->setTitle(QApplication::translate("MainWindow", "\320\241\321\200\320\260\320\262\320\275\320\265\320\275\320\270\320\265", nullptr));
-        visualButton->setText(QApplication::translate("MainWindow", "\320\222\320\270\320\267\321\203\320\260\320\273\321\214\320\275\321\213\320\265\n"
-"\321\205\320\260\321\200\320\260\320\272\321\202\320\265\321\200\320\270\321\201\321\202\320\270\320\272\320\270", nullptr));
+        stepButton->setText(QApplication::translate("MainWindow", "\320\241\321\202\321\203\320\277\320\265\320\275\321\207\320\260\321\202\320\276\321\201\321\202\321\214", nullptr));
         timeButton->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\320\265\320\275\320\275\321\213\320\265\n"
 "\321\205\320\260\321\200\320\260\320\272\321\202\320\265\321\200\320\270\321\201\321\202\320\270\320\272\320\270", nullptr));
-        clearBox->setTitle(QString());
-        clearButton->setText(QApplication::translate("MainWindow", "\320\236\321\207\320\270\321\201\321\202\320\270\321\202\321\214", nullptr));
     } // retranslateUi
 
 };
