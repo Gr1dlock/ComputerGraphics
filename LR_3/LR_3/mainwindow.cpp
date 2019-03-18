@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->setSceneRect(QRect(QPoint(0,0), QPoint(535,535)));
     ui->buildButton->setEnabled(false);
     ui->buildVisualButton->setEnabled(false);
+    ui->stepButton->setEnabled(false);
+    ui->timeButton->setEnabled(false);
     QRegExp check("[-+]?\\d+$");
     QRegExpValidator *valid_int = new QRegExpValidator(check, this);
     ui->lineEdit_Xk->setValidator(valid_int);
