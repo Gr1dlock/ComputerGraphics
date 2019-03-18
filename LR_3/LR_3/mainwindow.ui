@@ -1296,6 +1296,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QRadioButton" name="radioButton_8">
+          <property name="text">
+           <string>Алгоритм Ву</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QRadioButton" name="radioButton_5">
           <property name="text">
            <string>Библиотечный алгоритм</string>

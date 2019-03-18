@@ -105,6 +105,8 @@ void MainWindow::on_buildButton_clicked()
         drawBresenhamStepless(xn, yn, xk, yk);
     else if (ui->radioButton_5->isChecked())
         scene->addLine(QLine(QPoint(xn, yn), QPoint(xk, yk)), cur_color);
+    else if (ui->radioButton_8->isChecked())
+        drawWu(xn, yn, xk, yk);
 }
 
 void MainWindow::on_radioButton_6_clicked()
@@ -116,6 +118,7 @@ void MainWindow::on_radioButton_7_clicked()
 {
     cur_color = chosen_color;
 }
+
 
 void MainWindow::drawDDA(int xn, int yn, int xk, int yk)
 {
@@ -343,6 +346,98 @@ void MainWindow::drawVisual(int xc, int yc, double length, double angle)
                                  QPoint(static_cast<int>(round(xc + length * cos(i))) ,
                                         static_cast<int>(round(yc + length * sin(i))))), cur_color);
         }
+    else if (ui->radioButton_8->isChecked())
+        for (double i = 0; !qFuzzyCompare(i, 2 * M_PI); i += angle * M_PI / 180)
+        {
+            drawWu(xc, yc, static_cast<int>(round(xc + length * cos(i))),
+                                  static_cast<int>(round(yc + length * sin(i))));
+        }
+}
+
+void MainWindow::drawWu(int xn, int yn, int xk, int yk)
+{
+    Point *point;
+    if (xn == xk && yn == yk)
+    {
+        point = new Point(xk, yk, cur_color);
+        scene->addItem(point);
+    }
+    else
+    {
+        int dx = xk - xn;
+        int dy = yk - yn;
+        int I = 255;
+        double m;
+        if (abs(dx) > abs(dy))
+        {
+            if ((dy <= 0 && dx <= 0) || (dx < 0 && dy > 0))
+            {
+                qSwap(xn, xk);
+                qSwap(yn, yk);
+            }
+            m = static_cast<double>(dy) / dx;
+            double y = yn + m;
+            point = new Point(xn, yn, cur_color);
+            scene->addItem(point);
+            for (int x = xn; x < xk; ++x)
+            {
+                point = new Point(x, static_cast<int>(y),
+                                  QColor(cur_color.red(),
+                                         cur_color.green(),
+                                         cur_color.blue(),
+                                         static_cast<int>(I - fractionalPart(y) * I)));
+                scene->addItem(point);
+
+                point = new Point(x, static_cast<int>(y) + 1,
+                                  QColor(cur_color.red(),
+                                         cur_color.green(),
+                                         cur_color.blue(),
+                                         static_cast<int>(fractionalPart(y) * I)));
+                scene->addItem(point);
+                y += m;
+            }
+            point = new Point(xk, yk, cur_color);
+            scene->addItem(point);
+        }
+        else
+        {
+            if ((dy <= 0 && dx <= 0) || (dy <= 0 && dx >= 0))
+            {
+                qSwap(xn, xk);
+                qSwap(yn, yk);
+            }
+            m = static_cast<double>(dx)/ dy;
+            double x = xn + m;
+            point = new Point(xn, yn, cur_color);
+            scene->addItem(point);
+            for (int y = yn; y < yk; ++y)
+            {
+                point = new Point(static_cast<int>(x), y,
+                                  QColor(cur_color.red(),
+                                         cur_color.green(),
+                                         cur_color.blue(),
+                                         static_cast<int>(I - fractionalPart(x) * I)));
+                scene->addItem(point);
+
+                point = new Point(static_cast<int>(x) + 1, y,
+                                  QColor(cur_color.red(),
+                                         cur_color.green(),
+                                         cur_color.blue(),
+                                         static_cast<int>(fractionalPart(x) * I)));
+                scene->addItem(point);
+                x += m;
+            }
+            point = new Point(xk, yk, cur_color);
+            scene->addItem(point);
+        }
+    }
+}
+
+
+double MainWindow::fractionalPart(double x)
+{
+    int tmp =static_cast<int>(x);
+    return abs(x - tmp);
 }
 
 void MainWindow::on_buildVisualButton_clicked()

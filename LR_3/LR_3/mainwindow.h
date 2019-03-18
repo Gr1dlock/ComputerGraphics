@@ -46,6 +46,8 @@ private:
     void drawBresenhamStepless(int xn, int yn, int xk, int yk);
     int sign(int x);
     void drawVisual(int xc, int yc, double length, double angle);
+    void drawWu(int xn, int yn, int xk, int yk);
+    double fractionalPart(double x);
 };
 
 #endif // MAINWINDOW_H

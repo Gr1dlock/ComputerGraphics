@@ -107,6 +107,7 @@ public:
     QRadioButton *radioButton_2;
     QRadioButton *radioButton_3;
     QRadioButton *radioButton_4;
+    QRadioButton *radioButton_8;
     QRadioButton *radioButton_5;
     QGroupBox *colorBox;
     QHBoxLayout *horizontalLayout_10;
@@ -612,6 +613,11 @@ public:
 
         verticalLayout_2->addWidget(radioButton_4);
 
+        radioButton_8 = new QRadioButton(algorithmBox);
+        radioButton_8->setObjectName(QString::fromUtf8("radioButton_8"));
+
+        verticalLayout_2->addWidget(radioButton_8);
+
         radioButton_5 = new QRadioButton(algorithmBox);
         radioButton_5->setObjectName(QString::fromUtf8("radioButton_5"));
 
@@ -843,6 +849,7 @@ public:
         radioButton_2->setText(QApplication::translate("MainWindow", "\320\221\321\200\320\265\320\267\320\265\320\275\321\205\320\265\320\274\320\260 \321\201 \320\264\320\265\320\271\321\201\321\202\320\262\320\270\321\202\320\265\320\273\321\214\320\275\321\213\320\274\320\270 \321\207\320\270\321\201\320\273\320\260\320\274\320\270", nullptr));
         radioButton_3->setText(QApplication::translate("MainWindow", "\320\221\321\200\320\265\320\267\320\265\320\275\321\205\320\265\320\274\320\260 \321\201 \321\206\320\265\320\273\321\213\320\274\320\270 \321\207\320\270\321\201\320\273\320\260\320\274\320\270", nullptr));
         radioButton_4->setText(QApplication::translate("MainWindow", "\320\221\321\200\320\265\320\267\320\265\320\275\321\205\320\265\320\274\320\260 \321\201 \321\203\321\201\321\202\321\200\320\260\320\275\320\265\320\275\320\270\320\265\320\274 \321\201\321\202\321\203\320\277\320\265\320\275\321\207\320\260\321\202\320\276\321\201\321\202\320\270", nullptr));
+        radioButton_8->setText(QApplication::translate("MainWindow", "\320\220\320\273\320\263\320\276\321\200\320\270\321\202\320\274 \320\222\321\203", nullptr));
         radioButton_5->setText(QApplication::translate("MainWindow", "\320\221\320\270\320\261\320\273\320\270\320\276\321\202\320\265\321\207\320\275\321\213\320\271 \320\260\320\273\320\263\320\276\321\200\320\270\321\202\320\274", nullptr));
         colorBox->setTitle(QApplication::translate("MainWindow", "\320\246\320\262\320\265\321\202", nullptr));
         radioButton_6->setText(QApplication::translate("MainWindow", "\320\246\320\262\320\265\321\202 \321\204\320\276\320\275\320\260", nullptr));
