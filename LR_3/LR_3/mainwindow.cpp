@@ -138,7 +138,7 @@ void MainWindow::drawDDA(int xn, int yn, int xk, int yk)
         double x = xn, y = yn;
         for (int i = 0; i < l + 1; i++)
         {
-            point = new Point(static_cast<int>(x), static_cast<int>(y), cur_color);
+            point = new Point(static_cast<int>(round(x)), static_cast<int>(round(y)), cur_color);
             scene->addItem(point);
             x += dx;
             y += dy;

@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1bc0511e-22d2-426b-b84c-fbcc1a42e7a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/LR_2/LR_2.pro.user" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/LR_2/LR_2.pro.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/LR_2/epicycloid.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/LR_2/epicycloid.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/LR_2/epicycloid.h" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/LR_2/epicycloid.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/LR_2/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/LR_2/mainwindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/LR_2/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/LR_2/mainwindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/LR_2/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/LR_2/mainwindow.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/LR_2.app/Contents/MacOS/LR_2" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/LR_2.app/Contents/MacOS/LR_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/epicycloid.o" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/epicycloid.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/mainwindow.o" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/mainwindow.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/ui_mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_2/build-LR_2-Desktop_Qt_5_12_1_clang_64bit-Release/ui_mainwindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LR_3/LR_3/LR_3.pro.user" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_3/LR_3/LR_3.pro.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LR_3/LR_3/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../LR_3/LR_3/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +23,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/process.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
+            <state relative-caret-position="810">
               <caret line="55" column="13" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="13" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -44,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="94" selection-start-line="94" selection-end-line="94" />
+            <state relative-caret-position="406">
+              <caret line="173" column="69" selection-start-line="173" selection-start-column="69" selection-end-line="174" selection-end-column="55" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -89,7 +80,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -101,6 +91,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -172,17 +163,18 @@
       <workItem from="1551695354370" duration="138000" />
       <workItem from="1552214799062" duration="61000" />
       <workItem from="1552372960573" duration="506000" />
+      <workItem from="1553020228366" duration="36000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35349000" />
+    <option name="totallyTimeSpent" value="35385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="802" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49853373" visible="true" weight="0.1695279" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49853373" visible="true" weight="0.17167382" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5014663" side_tool="true" weight="0.2496318" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -220,7 +212,7 @@
     <entry file="file://$USER_HOME$/Downloads/GUI.py" />
     <entry file="file://$PROJECT_DIR$/process.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
+        <state relative-caret-position="810">
           <caret line="55" column="13" selection-start-line="55" selection-start-column="11" selection-end-line="55" selection-end-column="13" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -230,8 +222,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
+        <state relative-caret-position="406">
+          <caret line="173" column="69" selection-start-line="173" selection-start-column="69" selection-end-line="174" selection-end-column="55" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
