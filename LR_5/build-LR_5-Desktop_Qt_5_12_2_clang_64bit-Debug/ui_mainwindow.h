@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -21,6 +20,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
@@ -60,7 +60,6 @@ public:
     QFrame *BGFrame;
     QSpacerItem *horizontalSpacer_8;
     QPushButton *chooseBGColorButton;
-    QSpacerItem *horizontalSpacer_9;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_10;
     QLabel *label_4;
@@ -68,7 +67,6 @@ public:
     QFrame *bordersFrame;
     QSpacerItem *horizontalSpacer_12;
     QPushButton *chooseBordersColorButton;
-    QSpacerItem *horizontalSpacer_13;
     QHBoxLayout *horizontalLayout_7;
     QSpacerItem *horizontalSpacer_14;
     QLabel *label_5;
@@ -76,13 +74,18 @@ public:
     QFrame *fillFrame;
     QSpacerItem *horizontalSpacer_16;
     QPushButton *chooseFillColorButton;
-    QSpacerItem *horizontalSpacer_17;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_6;
+    QSpacerItem *horizontalSpacer_19;
+    QFrame *separatorFrame;
+    QSpacerItem *horizontalSpacer_20;
+    QPushButton *chooseSeparatorColorButton;
     QGroupBox *groupBox_3;
     QVBoxLayout *verticalLayout_7;
     QHBoxLayout *horizontalLayout_10;
     QSpacerItem *horizontalSpacer_23;
     QLabel *label_8;
-    QDoubleSpinBox *timerSpinBox;
+    QSpinBox *timerSpinBox;
     QLabel *label_7;
     QSpacerItem *horizontalSpacer_22;
     QHBoxLayout *horizontalLayout_9;
@@ -227,7 +230,7 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        horizontalSpacer_6 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_6 = new QSpacerItem(46, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_6);
 
@@ -326,7 +329,7 @@ public:
 
         horizontalLayout_5->addWidget(BGFrame);
 
-        horizontalSpacer_8 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_8 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_5->addItem(horizontalSpacer_8);
 
@@ -336,17 +339,13 @@ public:
 
         horizontalLayout_5->addWidget(chooseBGColorButton);
 
-        horizontalSpacer_9 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_9);
-
 
         verticalLayout_2->addLayout(horizontalLayout_5);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        horizontalSpacer_10 = new QSpacerItem(17, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_10 = new QSpacerItem(33, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_10);
 
@@ -435,7 +434,7 @@ public:
 
         horizontalLayout_6->addWidget(bordersFrame);
 
-        horizontalSpacer_12 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_12 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_6->addItem(horizontalSpacer_12);
 
@@ -445,17 +444,13 @@ public:
 
         horizontalLayout_6->addWidget(chooseBordersColorButton);
 
-        horizontalSpacer_13 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer_13);
-
 
         verticalLayout_2->addLayout(horizontalLayout_6);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        horizontalSpacer_14 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_14 = new QSpacerItem(26, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_7->addItem(horizontalSpacer_14);
 
@@ -549,7 +544,7 @@ public:
 
         horizontalLayout_7->addWidget(fillFrame);
 
-        horizontalSpacer_16 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_16 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_7->addItem(horizontalSpacer_16);
 
@@ -559,12 +554,118 @@ public:
 
         horizontalLayout_7->addWidget(chooseFillColorButton);
 
-        horizontalSpacer_17 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_7->addItem(horizontalSpacer_17);
-
 
         verticalLayout_2->addLayout(horizontalLayout_7);
+
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(6);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        label_6 = new QLabel(groupBox_2);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        sizePolicy.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
+        label_6->setSizePolicy(sizePolicy);
+        QFont font3;
+        font3.setPointSize(13);
+        label_6->setFont(font3);
+
+        horizontalLayout_8->addWidget(label_6);
+
+        horizontalSpacer_19 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_19);
+
+        separatorFrame = new QFrame(groupBox_2);
+        separatorFrame->setObjectName(QString::fromUtf8("separatorFrame"));
+        sizePolicy2.setHeightForWidth(separatorFrame->sizePolicy().hasHeightForWidth());
+        separatorFrame->setSizePolicy(sizePolicy2);
+        separatorFrame->setMinimumSize(QSize(25, 25));
+        separatorFrame->setMaximumSize(QSize(25, 25));
+        QPalette palette3;
+        palette3.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        QBrush brush12(QColor(252, 1, 7, 255));
+        brush12.setStyle(Qt::SolidPattern);
+        palette3.setBrush(QPalette::Active, QPalette::Button, brush12);
+        QBrush brush13(QColor(255, 124, 127, 255));
+        brush13.setStyle(Qt::SolidPattern);
+        palette3.setBrush(QPalette::Active, QPalette::Light, brush13);
+        QBrush brush14(QColor(253, 62, 67, 255));
+        brush14.setStyle(Qt::SolidPattern);
+        palette3.setBrush(QPalette::Active, QPalette::Midlight, brush14);
+        QBrush brush15(QColor(126, 0, 3, 255));
+        brush15.setStyle(Qt::SolidPattern);
+        palette3.setBrush(QPalette::Active, QPalette::Dark, brush15);
+        QBrush brush16(QColor(168, 1, 4, 255));
+        brush16.setStyle(Qt::SolidPattern);
+        palette3.setBrush(QPalette::Active, QPalette::Mid, brush16);
+        palette3.setBrush(QPalette::Active, QPalette::Text, brush3);
+        palette3.setBrush(QPalette::Active, QPalette::BrightText, brush);
+        palette3.setBrush(QPalette::Active, QPalette::ButtonText, brush3);
+        palette3.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette3.setBrush(QPalette::Active, QPalette::Window, brush12);
+        palette3.setBrush(QPalette::Active, QPalette::Shadow, brush3);
+        QBrush brush17(QColor(253, 128, 131, 255));
+        brush17.setStyle(Qt::SolidPattern);
+        palette3.setBrush(QPalette::Active, QPalette::AlternateBase, brush17);
+        palette3.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
+        palette3.setBrush(QPalette::Active, QPalette::ToolTipText, brush3);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette::Active, QPalette::PlaceholderText, brush5);
+#endif
+        palette3.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::Button, brush12);
+        palette3.setBrush(QPalette::Inactive, QPalette::Light, brush13);
+        palette3.setBrush(QPalette::Inactive, QPalette::Midlight, brush14);
+        palette3.setBrush(QPalette::Inactive, QPalette::Dark, brush15);
+        palette3.setBrush(QPalette::Inactive, QPalette::Mid, brush16);
+        palette3.setBrush(QPalette::Inactive, QPalette::Text, brush3);
+        palette3.setBrush(QPalette::Inactive, QPalette::BrightText, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::ButtonText, brush3);
+        palette3.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::Window, brush12);
+        palette3.setBrush(QPalette::Inactive, QPalette::Shadow, brush3);
+        palette3.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush17);
+        palette3.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
+        palette3.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush3);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush5);
+#endif
+        palette3.setBrush(QPalette::Disabled, QPalette::WindowText, brush15);
+        palette3.setBrush(QPalette::Disabled, QPalette::Button, brush12);
+        palette3.setBrush(QPalette::Disabled, QPalette::Light, brush13);
+        palette3.setBrush(QPalette::Disabled, QPalette::Midlight, brush14);
+        palette3.setBrush(QPalette::Disabled, QPalette::Dark, brush15);
+        palette3.setBrush(QPalette::Disabled, QPalette::Mid, brush16);
+        palette3.setBrush(QPalette::Disabled, QPalette::Text, brush15);
+        palette3.setBrush(QPalette::Disabled, QPalette::BrightText, brush);
+        palette3.setBrush(QPalette::Disabled, QPalette::ButtonText, brush15);
+        palette3.setBrush(QPalette::Disabled, QPalette::Base, brush12);
+        palette3.setBrush(QPalette::Disabled, QPalette::Window, brush12);
+        palette3.setBrush(QPalette::Disabled, QPalette::Shadow, brush3);
+        palette3.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush12);
+        palette3.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
+        palette3.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush3);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush5);
+#endif
+        separatorFrame->setPalette(palette3);
+        separatorFrame->setAutoFillBackground(true);
+        separatorFrame->setFrameShape(QFrame::Box);
+        separatorFrame->setFrameShadow(QFrame::Plain);
+
+        horizontalLayout_8->addWidget(separatorFrame);
+
+        horizontalSpacer_20 = new QSpacerItem(5, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_20);
+
+        chooseSeparatorColorButton = new QPushButton(groupBox_2);
+        chooseSeparatorColorButton->setObjectName(QString::fromUtf8("chooseSeparatorColorButton"));
+        chooseSeparatorColorButton->setFont(font1);
+
+        horizontalLayout_8->addWidget(chooseSeparatorColorButton);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_8);
 
         splitter->addWidget(groupBox_2);
         groupBox_3 = new QGroupBox(splitter);
@@ -578,7 +679,7 @@ public:
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setSpacing(6);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
-        horizontalSpacer_23 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_23 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_10->addItem(horizontalSpacer_23);
 
@@ -590,11 +691,10 @@ public:
 
         horizontalLayout_10->addWidget(label_8);
 
-        timerSpinBox = new QDoubleSpinBox(groupBox_3);
+        timerSpinBox = new QSpinBox(groupBox_3);
         timerSpinBox->setObjectName(QString::fromUtf8("timerSpinBox"));
         timerSpinBox->setFont(font2);
-        timerSpinBox->setDecimals(1);
-        timerSpinBox->setSingleStep(0.500000000000000);
+        timerSpinBox->setMaximum(5000);
 
         horizontalLayout_10->addWidget(timerSpinBox);
 
@@ -606,7 +706,7 @@ public:
 
         horizontalLayout_10->addWidget(label_7);
 
-        horizontalSpacer_22 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_22 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_10->addItem(horizontalSpacer_22);
 
@@ -711,9 +811,11 @@ public:
         chooseBordersColorButton->setText(QApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\321\202\321\214", nullptr));
         label_5->setText(QApplication::translate("MainWindow", "\320\246\320\262\320\265\321\202 \320\267\320\260\320\273\320\270\320\262\320\272\320\270", nullptr));
         chooseFillColorButton->setText(QApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\321\202\321\214", nullptr));
+        label_6->setText(QApplication::translate("MainWindow", "<html><head/><body><p>\320\246\320\262\320\265\321\202 \320\277\320\265\321\200\320\265\320\263\320\276\321\200\320\276\320\264\320\272\320\270</p></body></html>", nullptr));
+        chooseSeparatorColorButton->setText(QApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\321\202\321\214", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "\320\227\320\260\320\273\320\270\320\262\320\272\320\260", nullptr));
         label_8->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\264\320\265\321\200\320\266\320\272\320\260", nullptr));
-        label_7->setText(QApplication::translate("MainWindow", "\321\201\320\265\320\272\321\203\320\275\320\264", nullptr));
+        label_7->setText(QApplication::translate("MainWindow", "\320\274\320\270\320\273\320\273\320\270\321\201\320\265\320\272\321\203\320\275\320\264", nullptr));
         fillButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\273\320\270\321\202\321\214", nullptr));
         withTimeRadioButton->setText(QApplication::translate("MainWindow", "\320\241 \320\267\320\260\320\264\320\265\321\200\320\266\320\272\320\276\320\271", nullptr));
         withoutTimeRadioButton->setText(QApplication::translate("MainWindow", "\320\221\320\265\320\267 \320\267\320\260\320\264\320\265\321\200\320\266\320\272\320\270", nullptr));

@@ -31,6 +31,10 @@ private slots:
 
     void on_fillButton_clicked();
 
+    void on_clearFillButton_clicked();
+
+    void on_chooseSeparatorColorButton_clicked();
+
 private:
     PaintWidget *paint_widget;
     Ui::MainWindow *ui;

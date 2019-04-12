@@ -63,7 +63,14 @@ void MainWindow::on_chooseBordersColorButton_clicked()
 
 void MainWindow::on_chooseFillColorButton_clicked()
 {
-
+    QColor color = QColorDialog::getColor(Qt::white, this,"Выберите цвет");
+    if (color.isValid())
+    {
+        QPalette palette;
+        palette.setColor(QPalette::Background, color);
+        ui->fillFrame->setPalette(palette);
+        paint_widget->setFillColor(color);
+    }
 }
 
 void MainWindow::on_addPointButton_clicked()
@@ -99,6 +106,28 @@ void MainWindow::on_fillButton_clicked()
 {
     if (ui->withoutTimeRadioButton->isChecked())
     {
-        paint_widget->fillFigure();
+        paint_widget->fillFigure(0);
+    }
+    else if (ui->withTimeRadioButton->isChecked())
+    {
+         int time = ui->timerSpinBox->value();
+        paint_widget->fillFigure(time);
+    }
+}
+
+void MainWindow::on_clearFillButton_clicked()
+{
+    paint_widget->clearFill();
+}
+
+void MainWindow::on_chooseSeparatorColorButton_clicked()
+{
+    QColor color = QColorDialog::getColor(Qt::white, this,"Выберите цвет");
+    if (color.isValid())
+    {
+        QPalette palette;
+        palette.setColor(QPalette::Background, color);
+        ui->separatorFrame->setPalette(palette);
+        paint_widget->setSeparatorColor(color);
     }
 }
