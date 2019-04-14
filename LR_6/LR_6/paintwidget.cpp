@@ -53,21 +53,6 @@ void PaintWidget::setStartPoint(QPainter &painter, const QPoint &cur_point)
     update();
 }
 
-void PaintWidget::drawPoint(QPainter &painter, const int &x, const int &y)
-{
-    QColor cur = image->pixelColor(x, y);
-    if (cur == fill_color)
-    {
-        painter.setPen(bg_color);
-        painter.drawPoint(x, y);
-    }
-    else if (cur == bg_color)
-    {
-        painter.setPen(fill_color);
-        painter.drawPoint(x, y);
-    }
-}
-
 void PaintWidget::drawBresenham(QPainter &painter, const QPoint &first, const QPoint &second)
 {
     int xn = first.x();

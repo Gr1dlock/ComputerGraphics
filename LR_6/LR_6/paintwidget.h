@@ -48,7 +48,6 @@ private:
     void finishFigure(QPainter &painter);
     void addLine(QPainter &painter, const QPoint &cur_point);
     void setStartPoint(QPainter &painter, const QPoint &cur_point);
-    void drawPoint(QPainter &painter, const int &x, const int &y);
     void drawBresenham(QPainter &painter, const QPoint &first, const QPoint &second);
     void fillLine(int &x_left, int &x_right, QPainter &painter, const QPoint &cur);
     void findSeed(QStack<QPoint> &stack, const int &xleft, const int &xright, const int &y);
