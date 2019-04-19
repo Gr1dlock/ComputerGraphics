@@ -51,7 +51,7 @@ public:
     QLabel *label_6;
     QVBoxLayout *verticalLayout;
     QRadioButton *figureRadioButton;
-    QSpacerItem *verticalSpacer_2;
+    QRadioButton *arbitraryRadioButton;
     QRadioButton *seedRadioButton;
     QSpacerItem *horizontalSpacer_13;
     QHBoxLayout *horizontalLayout_12;
@@ -224,9 +224,13 @@ public:
 
         verticalLayout->addWidget(figureRadioButton);
 
-        verticalSpacer_2 = new QSpacerItem(20, 5, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        arbitraryRadioButton = new QRadioButton(groupBox);
+        arbitraryRadioButton->setObjectName(QString::fromUtf8("arbitraryRadioButton"));
+        QFont font3;
+        font3.setPointSize(13);
+        arbitraryRadioButton->setFont(font3);
 
-        verticalLayout->addItem(verticalSpacer_2);
+        verticalLayout->addWidget(arbitraryRadioButton);
 
         seedRadioButton = new QRadioButton(groupBox);
         seedRadioButton->setObjectName(QString::fromUtf8("seedRadioButton"));
@@ -791,6 +795,7 @@ public:
         label_2->setText(QApplication::translate("MainWindow", "Y:", nullptr));
         label_6->setText(QApplication::translate("MainWindow", "\320\240\320\265\320\266\320\270\320\274 \320\262\320\262\320\276\320\264\320\260:", nullptr));
         figureRadioButton->setText(QApplication::translate("MainWindow", "\320\234\320\275\320\276\320\263\320\276\321\203\320\263\320\276\320\273\321\214\320\275\320\270\320\272", nullptr));
+        arbitraryRadioButton->setText(QApplication::translate("MainWindow", "\320\237\321\200\320\276\320\270\320\267\320\262\320\276\320\273\321\214\320\275\320\260\321\217 \320\276\320\261\320\273\320\260\321\201\321\202\321\214", nullptr));
         seedRadioButton->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\202\321\200\320\260\320\262\320\276\321\207\320\275\321\213\320\271 \320\277\320\270\320\272\321\201\320\265\320\273\321\214", nullptr));
         label_9->setText(QApplication::translate("MainWindow", "\320\227\320\260\321\202\321\200\320\260\320\262\320\276\321\207\320\275\321\213\320\271 \320\277\320\270\320\272\321\201\320\265\320\273\321\214:", nullptr));
         XLabel->setText(QApplication::translate("MainWindow", "X = 0", nullptr));

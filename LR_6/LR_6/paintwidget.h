@@ -6,7 +6,7 @@
 #include <cmath>
 #include <QtCore>
 
-enum Mode { SEED, FIGURE };
+enum Mode { SEED, FIGURE, ARBITRARY };
 
 class PaintWidget : public QWidget
 {
@@ -25,17 +25,21 @@ public:
     void fillFigure(const int &time);
     void setSeedMode();
     void setFigureMode();
+    void setArbitraryMode();
 protected:
     void mousePressEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
-
+    void mouseMoveEvent(QMouseEvent *event);
 private:
     Mode mode;
     QPoint seed_pos;
     int start_point_index;
     QPoint last_point;
+    QPoint arbitrary_last_point;
     QVector<QPoint> points;
     QVector<std::pair<int, int>> edges;
+    QVector<QPoint> arbitrary_points;
+    QVector<std::pair<int, int>> arbitrary_edges;
     QImage *image;
     int widget_height;
     int widget_width;

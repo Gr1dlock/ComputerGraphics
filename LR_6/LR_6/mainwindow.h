@@ -35,10 +35,13 @@ private slots:
 
     void on_figureRadioButton_clicked();
 
+    void on_arbitraryRadioButton_clicked();
+
 private:
     PaintWidget *paint_widget;
     Ui::MainWindow *ui;
     bool enable_finish;
+    bool enable_add;
 };
 
 #endif // MAINWINDOW_H

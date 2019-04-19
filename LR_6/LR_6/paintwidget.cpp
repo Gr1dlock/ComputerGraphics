@@ -28,6 +28,14 @@ void PaintWidget::redrawImage()
     {
         drawBresenham(painter, points[edge.first], points[edge.second]);
     }
+    for (const QPoint &point: arbitrary_points)
+    {
+        painter.drawPoint(point);
+    }
+    for (const auto &edge: arbitrary_edges)
+    {
+        painter.drawLine(arbitrary_points[edge.first], arbitrary_points[edge.second]);
+    }
     update();
 }
 
@@ -55,6 +63,7 @@ void PaintWidget::setStartPoint(QPainter &painter, const QPoint &cur_point)
 
 void PaintWidget::drawBresenham(QPainter &painter, const QPoint &first, const QPoint &second)
 {
+
     int xn = first.x();
     int yn = first.y();
     int xk = second.x();
@@ -99,6 +108,8 @@ void PaintWidget::drawBresenham(QPainter &painter, const QPoint &first, const QP
             e += 2 * dy;
         }
     }
+
+//    painter.drawLine(first, second);
 }
 
 int PaintWidget::sign(int x)
@@ -159,9 +170,9 @@ void PaintWidget::findSeed(QStack<QPoint> &stack, const int &x_left, const int &
             }
         }
         xt = x;
-        while ((x < x_right) &&
-               (image->pixelColor(x, y) == borders_color) &&
-               (image->pixelColor(x, y) == fill_color))
+        while ((x <= x_right) &&
+               ((image->pixelColor(x, y) == borders_color) ||
+               (image->pixelColor(x, y) == fill_color)))
         {
             x++;
         }
@@ -201,7 +212,6 @@ void PaintWidget::setBordersColor(QColor &color)
 void PaintWidget::setFillColor(QColor &color)
 {
     fill_color.setRgb(color.rgb());
-    redrawImage();
 }
 
 void PaintWidget::drawByButton(const QPoint &cur_point)
@@ -216,7 +226,7 @@ void PaintWidget::drawByButton(const QPoint &cur_point)
     {
         setStartPoint(painter, cur_point);
     }
-    else
+    else if (mode == SEED)
     {
         setSeed(cur_point);
     }
@@ -242,6 +252,11 @@ void PaintWidget::clearAll()
         drawing_enabled = false;
         emit pointsChanged(points.size(), points.size());
     }
+    if (!arbitrary_points.empty())
+    {
+        arbitrary_edges.clear();
+        arbitrary_points.clear();
+    }
     update();
 }
 
@@ -252,7 +267,6 @@ void PaintWidget::clearFill()
 
 void PaintWidget::fillFigure(const int &time)
 {
-    redrawImage();
     QPainter painter(image);
     if (drawing_enabled)
     {
@@ -269,17 +283,20 @@ void PaintWidget::fillFigure(const int &time)
         while (!stack.empty())
         {
             cur = stack.pop();
-            fillLine(x_left, x_right, painter, cur);
-            if (cur.y() < widget_height - 1)
+            if (image->pixelColor(cur) != borders_color)
             {
-                findSeed(stack, x_left, x_right, cur.y() + 1);
+                fillLine(x_left, x_right, painter, cur);
+                if (cur.y() < widget_height - 1)
+                {
+                    findSeed(stack, x_left, x_right, cur.y() + 1);
+                }
+                if (cur.y() > 0)
+                {
+                    findSeed(stack, x_left, x_right, cur.y() - 1);
+                }
+                sleepFeature(time);
+                update();
             }
-            if (cur.y() > 0)
-            {
-                findSeed(stack, x_left, x_right, cur.y() - 1);
-            }
-            sleepFeature(time);
-            update();
         }
     }
 }
@@ -292,6 +309,11 @@ void PaintWidget::setSeedMode()
 void PaintWidget::setFigureMode()
 {
     mode = FIGURE;
+}
+
+void PaintWidget::setArbitraryMode()
+{
+    mode = ARBITRARY;
 }
 
 void PaintWidget::mousePressEvent(QMouseEvent *event)
@@ -329,11 +351,40 @@ void PaintWidget::mousePressEvent(QMouseEvent *event)
             setStartPoint(painter, cur_point);
         }
     }
-    else
+    else if (mode == SEED)
     {
         if (event->button() == Qt::LeftButton)
         {
             setSeed(event->pos());
+        }
+    }
+    else if (mode == ARBITRARY)
+    {
+        if (event->button() == Qt::LeftButton)
+        {
+            QPoint cur = event->pos();
+            painter.drawPoint(cur);
+            arbitrary_points.push_back(cur);
+            arbitrary_last_point = cur;
+            update();
+        }
+    }
+}
+
+void PaintWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    if (mode == ARBITRARY)
+    {
+        if (event->button() == Qt::LeftButton)
+        {
+            QPainter painter(image);
+            painter.setPen(borders_color);
+            QPoint cur = event->pos();
+            arbitrary_edges.push_back(std::make_pair(arbitrary_points.size(), arbitrary_points.size() - 1));
+            painter.drawLine(cur, arbitrary_last_point);
+            arbitrary_points.push_back(cur);
+            arbitrary_last_point = cur;
+            update();
         }
     }
 }

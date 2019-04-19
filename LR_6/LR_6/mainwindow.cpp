@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QRegExp check("[-+]?\\d+$");
     QRegExpValidator *valid = new QRegExpValidator(check, this);
     enable_finish = false;
+    enable_add = false;
     ui->addPointButton->setEnabled(false);
     ui->finishFigureButton->setEnabled(false);
     ui->lineEditX->setValidator(valid);
@@ -28,9 +29,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::addPointEnabled()
 {
-    bool inputcheck = ui->lineEditX->hasAcceptableInput() &&
+    enable_add = ui->lineEditX->hasAcceptableInput() &&
                   ui->lineEditY->hasAcceptableInput();
-    ui->addPointButton->setEnabled(inputcheck);
+    ui->addPointButton->setEnabled(enable_add);
 }
 
 void MainWindow::finishFigureEnabled(const int &cur_index, const int &start_index)
@@ -131,11 +132,20 @@ void MainWindow::changeSeedLabels(const QPoint &seed_pos)
 void MainWindow::on_seedRadioButton_clicked()
 {
     ui->finishFigureButton->setEnabled(false);
+    ui->addPointButton->setEnabled(enable_add);
     paint_widget->setSeedMode();
 }
 
 void MainWindow::on_figureRadioButton_clicked()
 {
     ui->finishFigureButton->setEnabled(enable_finish);
+    ui->addPointButton->setEnabled(enable_add);
     paint_widget->setFigureMode();
+}
+
+void MainWindow::on_arbitraryRadioButton_clicked()
+{
+    ui->finishFigureButton->setEnabled(false);
+    ui->addPointButton->setEnabled(false);
+    paint_widget->setArbitraryMode();
 }
