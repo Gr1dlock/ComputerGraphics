@@ -153,11 +153,11 @@ Error PaintWidget::clipFigure()
 void PaintWidget::clearAll()
 {
     image->fill(Qt::white);
-    if (figure_set)
+    if (figure_set || !figure.empty())
         figure.clear();
     figure_set = false;
     drawing_enabled = false;
-    if (clip_set)
+    if (clip_set || !clip.empty())
         clip.clear();
     clip_set = false;
     update();
@@ -168,8 +168,8 @@ void PaintWidget::clearFigure()
     if (figure_set || !figure.empty())
         figure.clear();
     figure_set = false;
-    redrawImage();
     drawing_enabled = false;
+    redrawImage();
 }
 
 void PaintWidget::setFigureMode()
