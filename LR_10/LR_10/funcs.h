@@ -5,11 +5,11 @@
 
 inline double f0(const double &x, const double &z)
 {
-    return sin(x) * sin(x) - cos(z) * cos(z);
+    return exp(x) - exp(z);
 }
 inline double f1(const double &x, const double &z)
 {
-    return 2 * cos(x + z);
+    return 2 * cos(x * z);
 }
 inline double f2(const double &x, const double &z)
 {

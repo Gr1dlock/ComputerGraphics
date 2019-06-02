@@ -2,9 +2,9 @@
 #define TRANSFORMDATA_H
 #include <cmath>
 
-#define M  50
-#define shx 300
-#define shy 285
+#define K 50
+#define CENTER_X 300
+#define CENTER_Y 285
 
 class TransformData
 {
@@ -45,8 +45,8 @@ public:
         rotateX(y_tmp, z_tmp);
         rotateY(x_tmp, z_tmp);
         rotateZ(x_tmp, y_tmp);
-        res_x = static_cast<int>(round(x_tmp * M + shx));
-        res_y = static_cast<int>(round(y_tmp * M + shy));
+        res_x = static_cast<int>(round(x_tmp * K + CENTER_X));
+        res_y = static_cast<int>(round(y_tmp * K + CENTER_Y));
     }
 
 private:
