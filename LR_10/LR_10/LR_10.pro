@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         floatinghorizon.cpp \
+        keysinstruction.cpp \
         main.cpp \
         mainwindow.cpp \
         paintwidget.cpp
@@ -33,12 +34,14 @@ SOURCES += \
 HEADERS += \
         floatinghorizon.h \
         funcs.h \
+        keysinstruction.h \
         mainwindow.h \
         paintwidget.h \
         surfacedata.h \
         transformdata.h
 
 FORMS += \
+        keysinstruction.ui \
         mainwindow.ui
 
 # Default rules for deployment.

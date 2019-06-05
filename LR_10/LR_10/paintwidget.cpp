@@ -2,8 +2,8 @@
 
 PaintWidget::PaintWidget(QWidget *parent) : QWidget(parent)
 {
-    widget_width = 740;
-    widget_height = 570;
+    widget_width = 840;
+    widget_height = 670;
     bg_color = QColor(50, 50, 50);
     line_color = Qt::white;
     surface_set = false;
@@ -31,6 +31,12 @@ void PaintWidget::buildSurface(SurfaceData &s_data, const TransformData &t_data,
     painter.setPen(line_color);
     algo.algorithm(&painter, s_data, t_data);
     update();
+    surface_set = true;
+}
+
+bool PaintWidget::surfaceIsSet()
+{
+    return surface_set;
 }
 
 void PaintWidget::paintEvent(QPaintEvent *event)

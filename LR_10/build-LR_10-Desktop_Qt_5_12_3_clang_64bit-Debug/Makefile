@@ -53,14 +53,18 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../LR_10/floatinghorizon.cpp \
+		../LR_10/keysinstruction.cpp \
 		../LR_10/main.cpp \
 		../LR_10/mainwindow.cpp \
-		../LR_10/paintwidget.cpp moc_mainwindow.cpp \
+		../LR_10/paintwidget.cpp moc_keysinstruction.cpp \
+		moc_mainwindow.cpp \
 		moc_paintwidget.cpp
 OBJECTS       = floatinghorizon.o \
+		keysinstruction.o \
 		main.o \
 		mainwindow.o \
 		paintwidget.o \
+		moc_keysinstruction.o \
 		moc_mainwindow.o \
 		moc_paintwidget.o
 DIST          = /Applications/Qt/5.12.3/clang_64/mkspecs/features/spec_pre.prf \
@@ -239,10 +243,12 @@ DIST          = /Applications/Qt/5.12.3/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.12.3/clang_64/mkspecs/features/lex.prf \
 		../LR_10/LR_10.pro ../LR_10/floatinghorizon.h \
 		../LR_10/funcs.h \
+		../LR_10/keysinstruction.h \
 		../LR_10/mainwindow.h \
 		../LR_10/paintwidget.h \
 		../LR_10/surfacedata.h \
 		../LR_10/transformdata.h ../LR_10/floatinghorizon.cpp \
+		../LR_10/keysinstruction.cpp \
 		../LR_10/main.cpp \
 		../LR_10/mainwindow.cpp \
 		../LR_10/paintwidget.cpp
@@ -264,7 +270,7 @@ include /Applications/Qt/5.12.3/clang_64/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-LR_10.app/Contents/MacOS/LR_10: ui_mainwindow.h $(OBJECTS)  
+LR_10.app/Contents/MacOS/LR_10: ui_keysinstruction.h ui_mainwindow.h $(OBJECTS)  
 	@test -d LR_10.app/Contents/MacOS/ || mkdir -p LR_10.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -655,9 +661,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Applications/Qt/5.12.3/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../LR_10/floatinghorizon.h ../LR_10/funcs.h ../LR_10/mainwindow.h ../LR_10/paintwidget.h ../LR_10/surfacedata.h ../LR_10/transformdata.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../LR_10/floatinghorizon.cpp ../LR_10/main.cpp ../LR_10/mainwindow.cpp ../LR_10/paintwidget.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../LR_10/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../LR_10/floatinghorizon.h ../LR_10/funcs.h ../LR_10/keysinstruction.h ../LR_10/mainwindow.h ../LR_10/paintwidget.h ../LR_10/surfacedata.h ../LR_10/transformdata.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../LR_10/floatinghorizon.cpp ../LR_10/keysinstruction.cpp ../LR_10/main.cpp ../LR_10/mainwindow.cpp ../LR_10/paintwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../LR_10/keysinstruction.ui ../LR_10/mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -692,14 +698,24 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Applications/Qt/5.12.3/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Applications/Qt/5.12.3/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_paintwidget.cpp
+compiler_moc_header_make_all: moc_keysinstruction.cpp moc_mainwindow.cpp moc_paintwidget.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_paintwidget.cpp
+	-$(DEL_FILE) moc_keysinstruction.cpp moc_mainwindow.cpp moc_paintwidget.cpp
+moc_keysinstruction.cpp: ../LR_10/keysinstruction.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		moc_predefs.h \
+		/Applications/Qt/5.12.3/clang_64/bin/moc
+	/Applications/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/dmitriylugovoy/Documents/GitHub/ComputerGraphics/LR_10/build-LR_10-Desktop_Qt_5_12_3_clang_64bit-Debug/moc_predefs.h -I/Applications/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/dmitriylugovoy/Documents/GitHub/ComputerGraphics/LR_10/LR_10 -I/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Applications/Qt/5.12.3/clang_64/lib ../LR_10/keysinstruction.h -o moc_keysinstruction.cpp
+
 moc_mainwindow.cpp: ../LR_10/mainwindow.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QColorDialog \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qcolordialog.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		../LR_10/paintwidget.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -709,6 +725,9 @@ moc_mainwindow.cpp: ../LR_10/mainwindow.h \
 		../LR_10/surfacedata.h \
 		../LR_10/funcs.h \
 		../LR_10/transformdata.h \
+		../LR_10/keysinstruction.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		moc_predefs.h \
 		/Applications/Qt/5.12.3/clang_64/bin/moc
 	/Applications/Qt/5.12.3/clang_64/bin/moc $(DEFINES) --include /Users/dmitriylugovoy/Documents/GitHub/ComputerGraphics/LR_10/build-LR_10-Desktop_Qt_5_12_3_clang_64bit-Debug/moc_predefs.h -I/Applications/Qt/5.12.3/clang_64/mkspecs/macx-clang -I/Users/dmitriylugovoy/Documents/GitHub/ComputerGraphics/LR_10/LR_10 -I/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.12.3/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.1/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Applications/Qt/5.12.3/clang_64/lib ../LR_10/mainwindow.h -o moc_mainwindow.cpp
@@ -730,9 +749,13 @@ compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_keysinstruction.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_keysinstruction.h ui_mainwindow.h
+ui_keysinstruction.h: ../LR_10/keysinstruction.ui \
+		/Applications/Qt/5.12.3/clang_64/bin/uic
+	/Applications/Qt/5.12.3/clang_64/bin/uic ../LR_10/keysinstruction.ui -o ui_keysinstruction.h
+
 ui_mainwindow.h: ../LR_10/mainwindow.ui \
 		/Applications/Qt/5.12.3/clang_64/bin/uic
 	/Applications/Qt/5.12.3/clang_64/bin/uic ../LR_10/mainwindow.ui -o ui_mainwindow.h
@@ -757,11 +780,20 @@ floatinghorizon.o: ../LR_10/floatinghorizon.cpp ../LR_10/floatinghorizon.h \
 		../LR_10/transformdata.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o floatinghorizon.o ../LR_10/floatinghorizon.cpp
 
+keysinstruction.o: ../LR_10/keysinstruction.cpp ../LR_10/keysinstruction.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		ui_keysinstruction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o keysinstruction.o ../LR_10/keysinstruction.cpp
+
 main.o: ../LR_10/main.cpp ../LR_10/mainwindow.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QColorDialog \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qcolordialog.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		../LR_10/paintwidget.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -771,6 +803,9 @@ main.o: ../LR_10/main.cpp ../LR_10/mainwindow.h \
 		../LR_10/surfacedata.h \
 		../LR_10/funcs.h \
 		../LR_10/transformdata.h \
+		../LR_10/keysinstruction.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../LR_10/main.cpp
@@ -780,6 +815,9 @@ mainwindow.o: ../LR_10/mainwindow.cpp ../LR_10/mainwindow.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QColorDialog \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qcolordialog.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		../LR_10/paintwidget.h \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -789,6 +827,9 @@ mainwindow.o: ../LR_10/mainwindow.cpp ../LR_10/mainwindow.h \
 		../LR_10/surfacedata.h \
 		../LR_10/funcs.h \
 		../LR_10/transformdata.h \
+		../LR_10/keysinstruction.h \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		/Applications/Qt/5.12.3/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../LR_10/mainwindow.cpp
 
@@ -802,6 +843,9 @@ paintwidget.o: ../LR_10/paintwidget.cpp ../LR_10/paintwidget.h \
 		../LR_10/funcs.h \
 		../LR_10/transformdata.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paintwidget.o ../LR_10/paintwidget.cpp
+
+moc_keysinstruction.o: moc_keysinstruction.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_keysinstruction.o moc_keysinstruction.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -18,9 +18,9 @@ private:
     QHash<int, int> bottom;
     int sign(int num);
     void horizon(QPainter *painter, int x1, int y1, int x2, int y2);
-    int isVisible(const int &y, const int &x);
+    int isVisible(const int &x, const int &y);
     void findIntersection(int &xi, int &yi, int x1, int y1, int x2, int y2, const QHash<int, int> &horizon);
-    void processEdge(QPainter *painter, int &edge_x, int &edge_y, const int &x, const int &y);
+    void processEdge(QPainter *painter, bool &flag, int &edge_x, int &edge_y, const int &x, const int &y);
     void drawBresenham(QPainter *painter, const int &xn, const int &yn, const int &xk, const int &yk);
 
 };

@@ -12,6 +12,7 @@ public:
     void setBGColor(QColor &color);
     void setLineColor(QColor &color);
     void buildSurface(SurfaceData &s_data, const TransformData &t_data, const int &func_index);
+    bool surfaceIsSet();
 protected:
     void paintEvent(QPaintEvent *event);
 private:

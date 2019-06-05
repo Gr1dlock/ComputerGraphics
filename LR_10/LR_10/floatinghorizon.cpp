@@ -9,10 +9,9 @@ void FloatingHorizon::horizon(QPainter *painter, int x1,  int y1, int x2, int y2
     }
     if (x2 == x1)
     {
-        top[x1] = qMax(top[x1], y1);
-        bottom[x1] = qMin(bottom[x1], y1);
-
-        painter->drawLine(x1, y1, x2, y2);
+        top[x2] = qMax(top[x2], y2);
+        bottom[x2] = qMin(bottom[x2], y2);
+        painter->drawLine(x1, widget_height - y1, x2, widget_height - y2);
     }
     else
     {
@@ -25,7 +24,7 @@ void FloatingHorizon::horizon(QPainter *painter, int x1,  int y1, int x2, int y2
             int y = static_cast<int>(round(cur_y));
             top[x] = qMax(top[x], y);
             bottom[x] = qMin(bottom[x], y);
-            painter->drawLine(x_prev, y_prev, x, y);
+            painter->drawLine(x_prev, widget_height - y_prev, x, widget_height - y);
             cur_y += m;
             x_prev = x;
             y_prev = y;
@@ -33,7 +32,7 @@ void FloatingHorizon::horizon(QPainter *painter, int x1,  int y1, int x2, int y2
     }
 }
 
-int FloatingHorizon::isVisible(const int &y, const int &x)
+int FloatingHorizon::isVisible(const int &x, const int &y)
 {
     if (y < top[x] && y > bottom[x])
         return 0;
@@ -54,8 +53,8 @@ void FloatingHorizon::findIntersection(int &xi, int &yi, int x1, int y1, int x2,
     }
     else if (y1 == horizon[x1] && y2 == horizon[x2])
     {
-        xi = x1;
-        yi = y1;
+        xi = x2;
+        yi = y2;
     }
     else
     {
@@ -65,10 +64,11 @@ void FloatingHorizon::findIntersection(int &xi, int &yi, int x1, int y1, int x2,
     }
 }
 
-void FloatingHorizon::processEdge(QPainter *painter, int &edge_x, int &edge_y, const int &x, const int &y)
+void FloatingHorizon::processEdge(QPainter *painter, bool &flag, int &edge_x, int &edge_y, const int &x, const int &y)
 {
-    if (edge_x != -1)
+    if (!flag)
         horizon(painter, edge_x, edge_y, x, y);
+    flag = false;
     edge_x = x;
     edge_y = y;
 }
@@ -79,6 +79,8 @@ void FloatingHorizon::algorithm(QPainter *painter, const SurfaceData &s_data, co
     int y_left = -1;
     int x_right = -1;
     int y_right = -1;
+    bool flag_left = true;
+    bool flag_right = true;
     double x_beg = s_data.getBegX();
     double x_end = s_data.getEndX();
     double x_step = s_data.getStepX();
@@ -92,20 +94,28 @@ void FloatingHorizon::algorithm(QPainter *painter, const SurfaceData &s_data, co
         top[i] = 0;
         bottom[i] = widget_height;
     }
-    for (double z = z_end; z >= z_beg; z -= z_step)
+    int count = static_cast<int>(ceil((z_end - z_beg) / z_step));
+    double z = z_end;;
+    if (((t_data.teta_x > 90 || t_data.teta_x < -90) && (t_data.teta_y <= 90 && t_data.teta_y >= -90)) ||
+            ((t_data.teta_x <= 90 && t_data.teta_x >= -90) && (t_data.teta_y > 90 || t_data.teta_y < -90)))
+    {
+        z = z_beg;
+        z_step *= -1;
+    }
+    for (int i = 0; i < count; i++)
     {
         t_data.transform(x_beg, (*cur_func)(x_beg, z), z, x_prev, y_prev);
-        processEdge(painter, x_left, y_left, x_prev, y_prev);
-        int prev_flag = isVisible(y_prev, x_prev);
-        for (double x = x_beg; x < x_end; x += x_step)
+        processEdge(painter, flag_left, x_left, y_left, x_prev, y_prev);
+        int prev_flag = isVisible(x_prev, y_prev);
+        for (double x = x_beg; x <= x_end; x += x_step)
         {
             int x_cur = 0, y_cur = 0;
             int xi, yi;
             t_data.transform(x, cur_func(x, z), z, x_cur, y_cur);
-            int cur_flag = isVisible(y_cur, x_cur);
+            int cur_flag = isVisible(x_cur, y_cur);
             if (prev_flag == cur_flag)
             {
-                if (prev_flag)
+                if (prev_flag != 0)
                 {
                     horizon(painter, x_prev, y_prev, x_cur, y_cur);
                 }
@@ -127,7 +137,7 @@ void FloatingHorizon::algorithm(QPainter *painter, const SurfaceData &s_data, co
                 if (prev_flag == 0)
                 {
                     findIntersection(xi, yi, x_prev, y_prev, x_cur, y_cur, top);
-                    horizon(painter, x_prev, y_prev, xi, yi);
+                    horizon(painter, x_cur, y_cur, xi, yi);
                 }
                 else
                 {
@@ -142,7 +152,7 @@ void FloatingHorizon::algorithm(QPainter *painter, const SurfaceData &s_data, co
                 if (prev_flag == 0)
                 {
                     findIntersection(xi, yi, x_prev, y_prev, x_cur, y_cur, bottom);
-                    horizon(painter, x_prev, y_prev, xi, yi);
+                    horizon(painter, x_cur, y_cur, xi, yi);
                 }
                 else
                 {
@@ -156,7 +166,8 @@ void FloatingHorizon::algorithm(QPainter *painter, const SurfaceData &s_data, co
             x_prev = x_cur;
             y_prev = y_cur;
         }
-        processEdge(painter, x_right, y_right, x_prev, y_prev);
+        processEdge(painter, flag_right, x_right, y_right, x_prev, y_prev);
+        z -= z_step;
     }
 }
 

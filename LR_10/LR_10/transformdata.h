@@ -2,15 +2,14 @@
 #define TRANSFORMDATA_H
 #include <cmath>
 
-#define K 50
-#define CENTER_X 300
-#define CENTER_Y 285
+#define CENTER_X 420
+#define CENTER_Y 335
 
 class TransformData
 {
 public:
-    TransformData(const int &angle_x, const int &angle_y, const int &angle_z)
-        : teta_x(angle_x), teta_y(angle_y), teta_z(angle_z)
+    TransformData(const int &angle_x, const int &angle_y, const int &angle_z, const int &coef)
+        : teta_x(angle_x), teta_y(angle_y), teta_z(angle_z), k(coef)
     {}
 
     void rotateX(double &y, double &z) const
@@ -25,8 +24,8 @@ public:
     {
         double teta = teta_y * M_PI / 180;
         double buf = x;
-        x = cos(teta) * x - sin(teta) * z;
-        z = cos(teta) * z + sin(teta) * buf;
+        x = cos(teta) * x + sin(teta) * z;
+        z = cos(teta) * z - sin(teta) * buf;
     }
 
     void rotateZ(double &x, double &y) const
@@ -45,14 +44,15 @@ public:
         rotateX(y_tmp, z_tmp);
         rotateY(x_tmp, z_tmp);
         rotateZ(x_tmp, y_tmp);
-        res_x = static_cast<int>(round(x_tmp * K + CENTER_X));
-        res_y = static_cast<int>(round(y_tmp * K + CENTER_Y));
+        res_x = static_cast<int>(round(x_tmp * k + CENTER_X));
+        res_y = static_cast<int>(round(y_tmp * k + CENTER_Y));
     }
 
-private:
+public:
     int teta_x;
     int teta_y;
     int teta_z;
+    int k;
 };
 
 #endif // TRANSFORMDATA_H

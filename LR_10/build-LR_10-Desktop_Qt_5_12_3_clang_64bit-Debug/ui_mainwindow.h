@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
@@ -18,6 +19,8 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
@@ -31,6 +34,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *action;
     QWidget *centralWidget;
     QSplitter *splitter;
     QGroupBox *groupBox;
@@ -93,6 +97,16 @@ public:
     QSpacerItem *horizontalSpacer_20;
     QPushButton *chooseLineColorButton;
     QSpacerItem *horizontalSpacer_19;
+    QGroupBox *groupBox_5;
+    QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_19;
+    QSpacerItem *horizontalSpacer_39;
+    QLabel *label_14;
+    QSpacerItem *horizontalSpacer_40;
+    QSlider *sliderK;
+    QSpacerItem *horizontalSpacer_41;
+    QLabel *tetaXLabel_2;
+    QSpacerItem *horizontalSpacer_42;
     QGroupBox *groupBox_3;
     QVBoxLayout *verticalLayout_3;
     QHBoxLayout *horizontalLayout_16;
@@ -125,18 +139,26 @@ public:
     QSpacerItem *horizontalSpacer_32;
     QPushButton *buildButton;
     QSpacerItem *horizontalSpacer_33;
+    QHBoxLayout *horizontalLayout_18;
+    QSpacerItem *horizontalSpacer_37;
+    QPushButton *resetButton;
+    QSpacerItem *horizontalSpacer_38;
     QStatusBar *statusBar;
+    QMenuBar *menuBar;
+    QMenu *menu;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1200, 650);
+        MainWindow->resize(1300, 750);
+        action = new QAction(MainWindow);
+        action->setObjectName(QString::fromUtf8("action"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         splitter = new QSplitter(centralWidget);
         splitter->setObjectName(QString::fromUtf8("splitter"));
-        splitter->setGeometry(QRect(780, 10, 400, 600));
+        splitter->setGeometry(QRect(880, 10, 400, 700));
         splitter->setOrientation(Qt::Vertical);
         groupBox = new QGroupBox(splitter);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
@@ -172,7 +194,7 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        horizontalSpacer_3 = new QSpacerItem(90, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(70, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_3);
 
@@ -187,7 +209,7 @@ public:
 
         horizontalLayout_2->addWidget(funcComboBox);
 
-        horizontalSpacer_4 = new QSpacerItem(90, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_4 = new QSpacerItem(70, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer_4);
 
@@ -239,9 +261,9 @@ public:
         spinBoxXBeg->setObjectName(QString::fromUtf8("spinBoxXBeg"));
         spinBoxXBeg->setFont(font1);
         spinBoxXBeg->setDecimals(1);
-        spinBoxXBeg->setMinimum(-3.000000000000000);
-        spinBoxXBeg->setMaximum(3.000000000000000);
-        spinBoxXBeg->setValue(-3.000000000000000);
+        spinBoxXBeg->setMinimum(-10.000000000000000);
+        spinBoxXBeg->setMaximum(10.000000000000000);
+        spinBoxXBeg->setValue(-5.000000000000000);
 
         horizontalLayout_4->addWidget(spinBoxXBeg);
 
@@ -267,9 +289,9 @@ public:
         spinBoxXEnd->setObjectName(QString::fromUtf8("spinBoxXEnd"));
         spinBoxXEnd->setFont(font1);
         spinBoxXEnd->setDecimals(1);
-        spinBoxXEnd->setMinimum(-3.000000000000000);
-        spinBoxXEnd->setMaximum(3.000000000000000);
-        spinBoxXEnd->setValue(3.000000000000000);
+        spinBoxXEnd->setMinimum(-10.000000000000000);
+        spinBoxXEnd->setMaximum(10.000000000000000);
+        spinBoxXEnd->setValue(5.000000000000000);
 
         horizontalLayout_5->addWidget(spinBoxXEnd);
 
@@ -294,6 +316,7 @@ public:
         spinBoxXStep = new QDoubleSpinBox(groupBox);
         spinBoxXStep->setObjectName(QString::fromUtf8("spinBoxXStep"));
         spinBoxXStep->setFont(font1);
+        spinBoxXStep->setMinimum(0.010000000000000);
         spinBoxXStep->setMaximum(1.000000000000000);
         spinBoxXStep->setSingleStep(0.050000000000000);
         spinBoxXStep->setValue(0.050000000000000);
@@ -332,9 +355,9 @@ public:
         spinBoxZBeg->setObjectName(QString::fromUtf8("spinBoxZBeg"));
         spinBoxZBeg->setFont(font1);
         spinBoxZBeg->setDecimals(1);
-        spinBoxZBeg->setMinimum(-3.000000000000000);
-        spinBoxZBeg->setMaximum(3.000000000000000);
-        spinBoxZBeg->setValue(-3.000000000000000);
+        spinBoxZBeg->setMinimum(-10.000000000000000);
+        spinBoxZBeg->setMaximum(10.000000000000000);
+        spinBoxZBeg->setValue(-5.000000000000000);
 
         horizontalLayout_9->addWidget(spinBoxZBeg);
 
@@ -360,10 +383,10 @@ public:
         spinBoxZEnd->setObjectName(QString::fromUtf8("spinBoxZEnd"));
         spinBoxZEnd->setFont(font1);
         spinBoxZEnd->setDecimals(1);
-        spinBoxZEnd->setMinimum(-3.000000000000000);
-        spinBoxZEnd->setMaximum(3.000000000000000);
+        spinBoxZEnd->setMinimum(-10.000000000000000);
+        spinBoxZEnd->setMaximum(10.000000000000000);
         spinBoxZEnd->setSingleStep(1.000000000000000);
-        spinBoxZEnd->setValue(3.000000000000000);
+        spinBoxZEnd->setValue(5.000000000000000);
 
         horizontalLayout_10->addWidget(spinBoxZEnd);
 
@@ -388,7 +411,8 @@ public:
         spinBoxZStep = new QDoubleSpinBox(groupBox);
         spinBoxZStep->setObjectName(QString::fromUtf8("spinBoxZStep"));
         spinBoxZStep->setFont(font1);
-        spinBoxZStep->setMaximum(5.000000000000000);
+        spinBoxZStep->setMinimum(0.010000000000000);
+        spinBoxZStep->setMaximum(1.000000000000000);
         spinBoxZStep->setSingleStep(0.050000000000000);
         spinBoxZStep->setValue(0.100000000000000);
 
@@ -650,6 +674,71 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_12);
 
         splitter->addWidget(groupBox_2);
+        groupBox_5 = new QGroupBox(splitter);
+        groupBox_5->setObjectName(QString::fromUtf8("groupBox_5"));
+        groupBox_5->setFont(font);
+        verticalLayout_5 = new QVBoxLayout(groupBox_5);
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        horizontalLayout_19 = new QHBoxLayout();
+        horizontalLayout_19->setSpacing(6);
+        horizontalLayout_19->setObjectName(QString::fromUtf8("horizontalLayout_19"));
+        horizontalSpacer_39 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_39);
+
+        label_14 = new QLabel(groupBox_5);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        sizePolicy.setHeightForWidth(label_14->sizePolicy().hasHeightForWidth());
+        label_14->setSizePolicy(sizePolicy);
+        label_14->setFont(font1);
+
+        horizontalLayout_19->addWidget(label_14);
+
+        horizontalSpacer_40 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_40);
+
+        sliderK = new QSlider(groupBox_5);
+        sliderK->setObjectName(QString::fromUtf8("sliderK"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(sliderK->sizePolicy().hasHeightForWidth());
+        sliderK->setSizePolicy(sizePolicy2);
+        sliderK->setMinimumSize(QSize(155, 0));
+        sliderK->setFont(font1);
+        sliderK->setMinimum(1);
+        sliderK->setMaximum(100);
+        sliderK->setValue(45);
+        sliderK->setOrientation(Qt::Horizontal);
+        sliderK->setTickPosition(QSlider::NoTicks);
+        sliderK->setTickInterval(10);
+
+        horizontalLayout_19->addWidget(sliderK);
+
+        horizontalSpacer_41 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_41);
+
+        tetaXLabel_2 = new QLabel(groupBox_5);
+        tetaXLabel_2->setObjectName(QString::fromUtf8("tetaXLabel_2"));
+        sizePolicy.setHeightForWidth(tetaXLabel_2->sizePolicy().hasHeightForWidth());
+        tetaXLabel_2->setSizePolicy(sizePolicy);
+        tetaXLabel_2->setMinimumSize(QSize(35, 0));
+        tetaXLabel_2->setFont(font1);
+
+        horizontalLayout_19->addWidget(tetaXLabel_2);
+
+        horizontalSpacer_42 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_19->addItem(horizontalSpacer_42);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_19);
+
+        splitter->addWidget(groupBox_5);
         groupBox_3 = new QGroupBox(splitter);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         groupBox_3->setFont(font);
@@ -678,9 +767,6 @@ public:
 
         sliderX = new QSlider(groupBox_3);
         sliderX->setObjectName(QString::fromUtf8("sliderX"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(sliderX->sizePolicy().hasHeightForWidth());
         sliderX->setSizePolicy(sizePolicy2);
         sliderX->setMinimumSize(QSize(155, 0));
@@ -791,8 +877,8 @@ public:
         sliderZ->setSizePolicy(sizePolicy2);
         sliderZ->setMinimumSize(QSize(155, 0));
         sliderZ->setFont(font1);
-        sliderZ->setMinimum(-180);
-        sliderZ->setMaximum(180);
+        sliderZ->setMinimum(-45);
+        sliderZ->setMaximum(45);
         sliderZ->setOrientation(Qt::Horizontal);
         sliderZ->setInvertedAppearance(false);
         sliderZ->setInvertedControls(false);
@@ -832,7 +918,7 @@ public:
         horizontalLayout_17 = new QHBoxLayout();
         horizontalLayout_17->setSpacing(6);
         horizontalLayout_17->setObjectName(QString::fromUtf8("horizontalLayout_17"));
-        horizontalSpacer_32 = new QSpacerItem(115, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_32 = new QSpacerItem(100, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_17->addItem(horizontalSpacer_32);
 
@@ -842,23 +928,53 @@ public:
 
         horizontalLayout_17->addWidget(buildButton);
 
-        horizontalSpacer_33 = new QSpacerItem(115, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_33 = new QSpacerItem(100, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
         horizontalLayout_17->addItem(horizontalSpacer_33);
 
 
         verticalLayout_4->addLayout(horizontalLayout_17);
 
+        horizontalLayout_18 = new QHBoxLayout();
+        horizontalLayout_18->setSpacing(6);
+        horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
+        horizontalSpacer_37 = new QSpacerItem(70, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_18->addItem(horizontalSpacer_37);
+
+        resetButton = new QPushButton(groupBox_4);
+        resetButton->setObjectName(QString::fromUtf8("resetButton"));
+        resetButton->setFont(font1);
+
+        horizontalLayout_18->addWidget(resetButton);
+
+        horizontalSpacer_38 = new QSpacerItem(70, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_18->addItem(horizontalSpacer_38);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_18);
+
         splitter->addWidget(groupBox_4);
         MainWindow->setCentralWidget(centralWidget);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        menuBar = new QMenuBar(MainWindow);
+        menuBar->setObjectName(QString::fromUtf8("menuBar"));
+        menuBar->setGeometry(QRect(0, 0, 1300, 22));
+        menu = new QMenu(menuBar);
+        menu->setObjectName(QString::fromUtf8("menu"));
+        MainWindow->setMenuBar(menuBar);
+
+        menuBar->addAction(menu->menuAction());
+        menu->addAction(action);
 
         retranslateUi(MainWindow);
         QObject::connect(sliderX, SIGNAL(valueChanged(int)), tetaXLabel, SLOT(setNum(int)));
         QObject::connect(sliderY, SIGNAL(valueChanged(int)), tetaYLabel, SLOT(setNum(int)));
         QObject::connect(sliderZ, SIGNAL(valueChanged(int)), tetaZLabel, SLOT(setNum(int)));
+        QObject::connect(sliderK, SIGNAL(valueChanged(int)), tetaXLabel_2, SLOT(setNum(int)));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -866,13 +982,14 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\233\320\260\320\261\320\276\321\200\320\260\321\202\320\276\321\200\320\275\320\260\321\217 \321\200\320\260\320\261\320\276\321\202\320\260 10", nullptr));
+        action->setText(QApplication::translate("MainWindow", "\320\230\320\275\321\201\321\202\321\200\321\203\320\272\321\206\320\270\321\217", nullptr));
         groupBox->setTitle(QApplication::translate("MainWindow", "\320\237\320\276\320\262\320\265\321\200\321\205\320\275\320\276\321\201\321\202\321\214", nullptr));
         label->setText(QApplication::translate("MainWindow", "\320\242\320\265\320\272\321\203\321\211\320\260\321\217 \320\277\320\276\320\262\320\265\321\200\321\205\320\275\320\276\321\201\321\202\321\214:", nullptr));
-        funcComboBox->setItemText(0, QApplication::translate("MainWindow", "placeholder 1", nullptr));
-        funcComboBox->setItemText(1, QApplication::translate("MainWindow", "placeholder 2", nullptr));
-        funcComboBox->setItemText(2, QApplication::translate("MainWindow", "placeholder 3", nullptr));
-        funcComboBox->setItemText(3, QApplication::translate("MainWindow", "placeholder 4", nullptr));
-        funcComboBox->setItemText(4, QApplication::translate("MainWindow", "placeholder 5", nullptr));
+        funcComboBox->setItemText(0, QApplication::translate("MainWindow", "z^2 / 5 - x^2 / 5", nullptr));
+        funcComboBox->setItemText(1, QApplication::translate("MainWindow", "exp(sin(sqrt(x*x + z*z)))", nullptr));
+        funcComboBox->setItemText(2, QApplication::translate("MainWindow", "sin(x) * cos(z)", nullptr));
+        funcComboBox->setItemText(3, QApplication::translate("MainWindow", "2 * cos(x * z)", nullptr));
+        funcComboBox->setItemText(4, QApplication::translate("MainWindow", "|sin(x) * sin(z)|", nullptr));
 
         label_2->setText(QApplication::translate("MainWindow", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213:", nullptr));
         label_3->setText(QApplication::translate("MainWindow", "X\320\275:", nullptr));
@@ -886,6 +1003,9 @@ public:
         chooseBGColorButton->setText(QApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\321\202\321\214", nullptr));
         label_10->setText(QApplication::translate("MainWindow", "\320\246\320\262\320\265\321\202 \320\273\320\270\320\275\320\270\320\271:", nullptr));
         chooseLineColorButton->setText(QApplication::translate("MainWindow", "\320\222\321\213\320\261\321\200\320\260\321\202\321\214", nullptr));
+        groupBox_5->setTitle(QApplication::translate("MainWindow", "\320\234\320\260\321\201\321\210\321\202\320\260\320\261\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
+        label_14->setText(QApplication::translate("MainWindow", "\320\232\320\276\321\215\321\204\321\204\320\270\321\206\320\270\320\265\320\275\321\202", nullptr));
+        tetaXLabel_2->setText(QApplication::translate("MainWindow", "45", nullptr));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "\320\237\320\276\320\262\320\276\321\200\320\276\321\202", nullptr));
         label_11->setText(QApplication::translate("MainWindow", "\320\222\320\276\320\272\321\200\321\203\320\263 \320\276\321\201\320\270 OX:", nullptr));
         tetaXLabel->setText(QApplication::translate("MainWindow", "0", nullptr));
@@ -895,6 +1015,8 @@ public:
         tetaZLabel->setText(QApplication::translate("MainWindow", "0", nullptr));
         groupBox_4->setTitle(QString());
         buildButton->setText(QApplication::translate("MainWindow", "\320\237\320\276\321\201\321\202\321\200\320\276\320\270\321\202\321\214", nullptr));
+        resetButton->setText(QApplication::translate("MainWindow", "\320\241\320\261\321\200\320\276\321\201\320\270\321\202\321\214 \320\277\320\276\320\262\320\276\321\200\320\276\321\202", nullptr));
+        menu->setTitle(QApplication::translate("MainWindow", "\320\232\320\273\320\260\320\262\320\270\321\210\320\270 \320\277\320\276\320\262\320\276\321\200\320\276\321\202\320\276\320\262", nullptr));
     } // retranslateUi
 
 };
