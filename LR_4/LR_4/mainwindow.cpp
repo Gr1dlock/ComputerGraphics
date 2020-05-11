@@ -39,7 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
     pal.setColor(QPalette::Background, chosen_color);
     ui->frame->setPalette(pal);
 }
-}
 
 void MainWindow::drawVisualCircle(Circle &circle, const int &n, const int &step)
 {
@@ -388,4 +387,4 @@ void MainWindow::on_drawCircleChartButton_clicked()
     step = ui->spinBoxTimeStep->value();
     time_vector = countTime(r_start, r_end, step);
     drawCircleTimeChart(time_vector);
-
+}
